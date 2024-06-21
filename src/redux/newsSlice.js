@@ -12,16 +12,16 @@ export const fetchNews = createAsyncThunk(
     const sourceRes = await axios.get(`${BASE_URL}top-headlines/sources`, {
       params: { apiKey: API_KEY },
     });
-    //
+    // console.log('redux',sourceRes.data.sources)
     const sources = sourceRes.data.sources
-      .filter((source) => category === "all" || source.category === category)
-      .map((source) => source.id)
+      .filter((source) => category === "general" || source.category === category)
+      .map((source) => source.category)
       .join(",");
-    //
+    console.log('source',sources)
     const articlesResponse = await axios.get(`${BASE_URL}top-headlines`, {
       params: {
         apiKey: API_KEY,
-        sources,
+        category,
         page,
         pageSize: 10,
       },
@@ -40,7 +40,7 @@ const newsSlice = createSlice({
     articles: [],
     status: "idle",
     error: null,
-    category: "all",
+    category: "general",
     page: 1,
     totalResults:0,
     totalPages:0,
@@ -63,7 +63,7 @@ const newsSlice = createSlice({
       state.status = "succeeded";
       state.articles = action.payload.articles;
       state.totalResults = action.payload;
-      console.log(state.totalResults)
+    //   console.log(state.totalResults)
       state.totalPages = Math.ceil(action.payload.totalResults / 10);
     });
     builder.addCase(fetchNews.rejected, (state, action) => {

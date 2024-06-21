@@ -22,7 +22,7 @@ const ArticleList = () => {
         <RotateLoader color="#112950" />
       </div>
     );
-    console.log(totalPages)
+    // console.log(totalPages)
   if (status === "failed")
     return (
       <div className="flex justify-center items-center">
