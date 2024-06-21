@@ -19,14 +19,14 @@ const Article = ({ article,idx }) => {
           </div>
           <div>
             <div title={title} className="font-bold">
-                {title.slice(0,20)+'...'}
+                {title.length>20?title.slice(0,20)+'...':title}
                 </div>
             
           </div>
         </div>
       </td>
       <td>
-       {description.slice(0,20)}
+       {description?.length>20? description.slice(0,20)+'...':description}
       </td>
       <td>
         <Link to={`/details/${title}`}>Read More</Link>

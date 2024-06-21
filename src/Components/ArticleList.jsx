@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchNews } from "../redux/newsSlice";
+import { fetchNews,setPage } from "../redux/newsSlice";
 import { RotateLoader } from "react-spinners";
 import Article from "./Article";
+import Pagination from "./Pagination";
 
 const ArticleList = () => {
   const dispatch = useDispatch();
   //   get data from redux store
-  const { articles, status, error, category, page } = useSelector(
+  const { articles, status, error, category, page,totalPages } = useSelector(
     (state) => state.news
   );
   //   fetch api
@@ -21,6 +22,7 @@ const ArticleList = () => {
         <RotateLoader color="#112950" />
       </div>
     );
+    console.log(totalPages)
   if (status === "failed")
     return (
       <div className="flex justify-center items-center">
@@ -53,6 +55,7 @@ const ArticleList = () => {
           {/* foot */}
         </table>
       </div>
+      <Pagination currentPage={page} totalPages={totalPages} onPageChange={(page) => dispatch(setPage(page))}></Pagination>
     </div>
   );
 };

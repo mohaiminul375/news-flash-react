@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // api and keys
-const API_KEY = "0f95578168a14bffa3bf1c5e4886f534";
+// const API_KEY = "fa922ea666f540faa15c016b981e4bef";
 const BASE_URL = "https://newsapi.org/v2/";
 
 // fetch
@@ -23,10 +23,13 @@ export const fetchNews = createAsyncThunk(
         apiKey: API_KEY,
         sources,
         page,
-        pageSize: 9,
+        pageSize: 10,
       },
     });
-    return articlesResponse.data;
+    return{
+        articles: articlesResponse.data.articles,
+        totalResults: articlesResponse.data.totalResults
+    };
   }
 );
 
@@ -39,6 +42,8 @@ const newsSlice = createSlice({
     error: null,
     category: "all",
     page: 1,
+    totalResults:0,
+    totalPages:0,
   },
   //   reducer
   reducers: {
@@ -57,6 +62,9 @@ const newsSlice = createSlice({
     builder.addCase(fetchNews.fulfilled, (state, action) => {
       state.status = "succeeded";
       state.articles = action.payload.articles;
+      state.totalResults = action.payload;
+      console.log(state.totalResults)
+      state.totalPages = Math.ceil(action.payload.totalResults / 10);
     });
     builder.addCase(fetchNews.rejected, (state, action) => {
       state.status = "failed";
