@@ -3,7 +3,7 @@ import ArticleList from "../ArticleList";
 
 const Home = () => {
     return (
-        <div>
+        <div className="">
             <ArticleList></ArticleList>
         </div>
     );

@@ -1,12 +1,38 @@
+import { Link } from "react-router-dom";
 
-
-const Article = ({article}) => {
-    console.log(article.source)
-    return (
-        <div>
+const Article = ({ article,idx }) => {
+  console.log(article);
+  const {title,
+    urlToImage,description}=article;
+  return (
+    <tr className="border-b-[#112950]">
+      <th>{idx+1}</th>
+      <td>
+        <div className="flex items-center gap-3">
+          <div className="avatar">
+            <div className="mask mask-squircle w-12 h-12">
+              <img
+                src={urlToImage}
+                alt="article_img"
+              />
+            </div>
+          </div>
+          <div>
+            <div title={title} className="font-bold">
+                {title.slice(0,20)+'...'}
+                </div>
             
+          </div>
         </div>
-    );
+      </td>
+      <td>
+       {description.slice(0,20)}
+      </td>
+      <td>
+        <Link to={`/details/${title}`}>Read More</Link>
+        </td>
+    </tr>
+  );
 };
 
 export default Article;
