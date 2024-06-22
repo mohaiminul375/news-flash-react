@@ -29,7 +29,7 @@ const Article = ({ article,idx }) => {
        {description?.length>20? description.slice(0,20)+'...':description}
       </td>
       <td>
-        <Link to={`/details/${title}`}>Read More</Link>
+        <Link className="hover:cursor-pointer underline" to={`/article/${title}`}>Read More</Link>
         </td>
     </tr>
   );
