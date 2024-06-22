@@ -8,13 +8,13 @@ import Pagination from "./Pagination";
 const ArticleList = () => {
   const dispatch = useDispatch();
   //   get data from redux store
-  const { articles, status, error, category, page,totalPages } = useSelector(
+  const { articles, status, error, category, page,totalPages,language } = useSelector(
     (state) => state.news
   );
   //   fetch api
   useEffect(() => {
-    dispatch(fetchNews({ category, page }));
-  }, [dispatch, category, page]);
+    dispatch(fetchNews({ category, page,language }));
+  }, [dispatch, category, page,language]);
   // handle error and loading
   if (status === "loading")
     return (

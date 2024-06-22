@@ -8,10 +8,9 @@ const BASE_URL = "https://newsapi.org/v2/";
 // fetch
 export const fetchNews = createAsyncThunk(
   "news/fetchNews",
-  async ({ category, page, language }) => {
-    
-    
-    console.log("lan in store", language, category);
+  async ({category,page,language}) => {
+    // console.log("lan in store", language, category,pageSize);
+    console.log(category,page,language);
 
     const articlesResponse = await axios.get(`${BASE_URL}top-headlines`, {
       params: {
@@ -39,9 +38,9 @@ const newsSlice = createSlice({
     error: null,
     category: "general",
     page: 1,
-    language:'de',
     totalResults: 0,
     totalPages: 0,
+    language: "",
   },
   //   reducer
   reducers: {
@@ -54,7 +53,7 @@ const newsSlice = createSlice({
     },
     setLanguage: (state, action) => {
       state.language = action.payload;
-      console.log(state.language)
+      console.log(state.language);
     },
   },
 

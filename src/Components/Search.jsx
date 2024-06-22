@@ -1,15 +1,15 @@
 import { FaSearch } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "../redux/newsSlice";
+import { useState } from "react";
 
 const Search = () => {
-    const dispatch = useDispatch();
-//   const language = useSelector((state) => state.news.language);
-
+  const dispatch = useDispatch();
+  const { language } = useSelector((state) => state.news);
+  //   console.log(language)
   const handleSearch = (e) => {
     e.preventDefault();
     const lan = e.target.language.value;
-    console.log(lan);
     dispatch(setLanguage(lan));
   };
   return (
