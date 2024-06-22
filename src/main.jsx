@@ -8,6 +8,7 @@ import "./index.css";
 import Home from "./Components/Home/Home.jsx";
 import Root from "./Root/Root.jsx";
 import NewsDetails from "./Pages/NewsDetails.jsx";
+import Favorites from "./Pages/Favorites.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path:'/favorites',
+        element:<Favorites></Favorites>
       },
       {
         path:'/article/:title',

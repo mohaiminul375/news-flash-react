@@ -2,7 +2,7 @@ import { MdFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addFavorite, removeFavorite } from "../redux/favoritesSlice";
-
+import toast, { Toaster } from 'react-hot-toast';
 const Article = ({ article, idx }) => {
   console.log(article);
   const { title, urlToImage, description } = article;
@@ -14,8 +14,10 @@ const Article = ({ article, idx }) => {
   //   favorite func
   const handleFavorite = () => {
     if (isFavorite) {
+        toast.success('deleted succeed')
       dispatch(removeFavorite(article));
     } else {
+        toast.success('add to favorite succeed')
       dispatch(addFavorite(article));
     }
   };
@@ -37,11 +39,12 @@ const Article = ({ article, idx }) => {
         </div>
       </td>
       <td>
-        {description?.length > 20
+        {description?  (description?.length > 20
           ? description.slice(0, 20) + "..."
-          : description}
+          : description):'description not found'}
+          
       </td>
-      <td>
+      <td className="flex items-center gap-5">
         <Link
           className="hover:cursor-pointer underline"
           to={`/article/${title}`}
@@ -57,6 +60,7 @@ const Article = ({ article, idx }) => {
           
         </button>
       </td>
+      <Toaster position="top-center"/>
     </tr>
   );
 };

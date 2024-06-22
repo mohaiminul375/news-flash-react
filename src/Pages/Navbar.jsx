@@ -15,7 +15,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-        <NavLink>Favourite</NavLink>
+        <NavLink to='/favorites'>Favourite</NavLink>
     </>
   );
   return (

@@ -10,4 +10,5 @@
 - tailwind css
 - daisy Ui
 - Rest API (News.api.org)
+- react hot toast
 
