@@ -8,10 +8,7 @@ const BASE_URL = "https://newsapi.org/v2/";
 // fetch
 export const fetchNews = createAsyncThunk(
   "news/fetchNews",
-  async ({category,page,language}) => {
-    // console.log("lan in store", language, category,pageSize);
-    console.log(category,page,language);
-
+  async ({ category, page, language }) => {
     const articlesResponse = await axios.get(`${BASE_URL}top-headlines`, {
       params: {
         apiKey: API_KEY,
@@ -21,7 +18,7 @@ export const fetchNews = createAsyncThunk(
         language,
       },
     });
-    // console.log(language, category);
+
     return {
       articles: articlesResponse.data.articles,
       totalResults: articlesResponse.data.totalResults,
@@ -53,7 +50,6 @@ const newsSlice = createSlice({
     },
     setLanguage: (state, action) => {
       state.language = action.payload;
-      console.log(state.language);
     },
   },
 
@@ -64,8 +60,8 @@ const newsSlice = createSlice({
     builder.addCase(fetchNews.fulfilled, (state, action) => {
       state.status = "succeeded";
       state.articles = action.payload.articles;
+      // console.log(action.payload,'pay')
       state.totalResults = action.payload;
-      //   console.log(state.totalResults)
       state.totalPages = Math.ceil(action.payload.totalResults / 10);
     });
     builder.addCase(fetchNews.rejected, (state, action) => {

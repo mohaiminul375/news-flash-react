@@ -12,7 +12,7 @@ const Article = ({ article, idx }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites);
   const isFavorite = favorites.find((fav) => fav.url === article.url);
-  // console.log("isFavorite");
+  
   //   favorite func
   const handleFavorite = () => {
     if (isFavorite) {

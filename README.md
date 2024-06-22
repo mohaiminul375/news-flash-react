@@ -1,7 +1,16 @@
 # News Flash React
-# Live Url:
+
+# Live Url: https://flash-news-react.netlify.app
+
+note: new.api.org not working after deploy
+
+# Install dependencies:
+
+- npm i
+- npm run dev
 
 # Npm and Packages
+
 - vite
 - React
 - react router dom
@@ -13,4 +22,3 @@
 - react hot toast
 - react async helmet
 - Prop types
-

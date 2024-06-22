@@ -11,6 +11,7 @@ const ArticleList = () => {
   const { articles, status, error, category, page,totalPages,language } = useSelector(
     (state) => state.news
   );
+
   //   fetch api
   useEffect(() => {
     dispatch(fetchNews({ category, page,language }));
