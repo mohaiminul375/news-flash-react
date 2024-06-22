@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addFavorite, removeFavorite } from "../redux/favoritesSlice";
 import toast, { Toaster } from 'react-hot-toast';
+import PropTypes from 'prop-types';
+
 const Article = ({ article, idx }) => {
   // console.log(article);
   const { title, urlToImage, description } = article;
@@ -64,5 +66,8 @@ const Article = ({ article, idx }) => {
     </tr>
   );
 };
-
+Article.propTypes ={
+article:PropTypes.object,
+idx:PropTypes.number
+}
 export default Article;

@@ -11,4 +11,6 @@
 - daisy Ui
 - Rest API (News.api.org)
 - react hot toast
+- react async helmet
+- Prop types
 

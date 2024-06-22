@@ -9,6 +9,7 @@ import Home from "./Components/Home/Home.jsx";
 import Root from "./Root/Root.jsx";
 import NewsDetails from "./Pages/NewsDetails.jsx";
 import Favorites from "./Pages/Favorites.jsx";
+import { HelmetProvider } from "react-helmet-async";
 
 const router = createBrowserRouter([
   {
@@ -20,21 +21,23 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path:'/favorites',
-        element:<Favorites></Favorites>
+        path: "/favorites",
+        element: <Favorites></Favorites>,
       },
       {
-        path:'/article/:title',
-        element:<NewsDetails></NewsDetails>
-      }
+        path: "/article/:title",
+        element: <NewsDetails></NewsDetails>,
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <HelmetProvider>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </HelmetProvider>
   </React.StrictMode>
 );

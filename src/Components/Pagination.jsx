@@ -1,19 +1,22 @@
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-    const handlePrev = () => {
-        if (currentPage > 1) onPageChange(currentPage - 1);
-      };
-    
-      const handleNext = () => {
-        onPageChange(currentPage + 1);
-      };
+import PropTypes from "prop-types";
+
+const Pagination = ({ currentPage, onPageChange }) => {
+  const handlePrev = () => {
+    if (currentPage > 1) onPageChange(currentPage - 1);
+  };
+
+  const handleNext = () => {
+    onPageChange(currentPage + 1);
+  };
   return (
     <div>
       <div className="flex justify-center items-center gap-5 mt-12">
         {/* Previous*/}
         <button
-        onClick={handlePrev}
-        disabled={currentPage == 1}
-        className="px-4 py-2 mx-1 text-gray-700 disabled:text-gray-500 capitalize bg-gray-200 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-[#247CFF] hover:text-white">
+          onClick={handlePrev}
+          disabled={currentPage == 1}
+          className="px-4 py-2 mx-1 text-gray-700 disabled:text-gray-500 capitalize bg-gray-200 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-[#247CFF] hover:text-white"
+        >
           <div className="flex items-center -mx-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -37,9 +40,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 
         {/* Next */}
         <button
-        // disabled={currentPage===totalPages}
-        onClick={handleNext}
-        className="px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md hover:bg-[#247CFF] disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500">
+          // disabled={currentPage===totalPages}
+          onClick={handleNext}
+          className="px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md hover:bg-[#247CFF] disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500"
+        >
           <div className="flex items-center -mx-1">
             <span className="mx-1">Next</span>
 
@@ -63,5 +67,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     </div>
   );
 };
-
+Pagination.propTypes = {
+  currentPage: PropTypes.number,
+  onPageChange: PropTypes.number,
+};
 export default Pagination;

@@ -1,4 +1,3 @@
-import { FaSearch } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
 import Search from "../Components/Search";
