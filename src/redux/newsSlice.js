@@ -8,27 +8,24 @@ const BASE_URL = "https://newsapi.org/v2/";
 // fetch
 export const fetchNews = createAsyncThunk(
   "news/fetchNews",
-  async ({ category, page }) => {
-    const sourceRes = await axios.get(`${BASE_URL}top-headlines/sources`, {
-      params: { apiKey: API_KEY },
-    });
-    // console.log('redux',sourceRes.data.sources)
-    const sources = sourceRes.data.sources
-      .filter((source) => category === "general" || source.category === category)
-      .map((source) => source.category)
-      .join(",");
-    console.log('source',sources)
+  async ({ category, page, language }) => {
+    
+    
+    console.log("lan in store", language, category);
+
     const articlesResponse = await axios.get(`${BASE_URL}top-headlines`, {
       params: {
         apiKey: API_KEY,
         category,
         page,
         pageSize: 10,
+        language,
       },
     });
-    return{
-        articles: articlesResponse.data.articles,
-        totalResults: articlesResponse.data.totalResults
+    // console.log(language, category);
+    return {
+      articles: articlesResponse.data.articles,
+      totalResults: articlesResponse.data.totalResults,
     };
   }
 );
@@ -42,8 +39,9 @@ const newsSlice = createSlice({
     error: null,
     category: "general",
     page: 1,
-    totalResults:0,
-    totalPages:0,
+    language:'de',
+    totalResults: 0,
+    totalPages: 0,
   },
   //   reducer
   reducers: {
@@ -54,7 +52,12 @@ const newsSlice = createSlice({
     setPage: (state, action) => {
       state.page = action.payload;
     },
+    setLanguage: (state, action) => {
+      state.language = action.payload;
+      console.log(state.language)
+    },
   },
+
   extraReducers: (builder) => {
     builder.addCase(fetchNews.pending, (state) => {
       state.status = "loading";
@@ -63,7 +66,7 @@ const newsSlice = createSlice({
       state.status = "succeeded";
       state.articles = action.payload.articles;
       state.totalResults = action.payload;
-    //   console.log(state.totalResults)
+      //   console.log(state.totalResults)
       state.totalPages = Math.ceil(action.payload.totalResults / 10);
     });
     builder.addCase(fetchNews.rejected, (state, action) => {
@@ -73,6 +76,6 @@ const newsSlice = createSlice({
   },
 });
 
-export const { setCategory, setPage } = newsSlice.actions;
+export const { setCategory, setPage, setLanguage } = newsSlice.actions;
 
 export default newsSlice.reducer;

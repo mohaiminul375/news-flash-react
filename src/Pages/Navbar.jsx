@@ -1,19 +1,13 @@
 import { FaSearch } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
+import Search from "../Components/Search";
 
 const Navbar = () => {
   const navbars = (
     <>
       <div>
-        <div className="join">
-          <input
-            className="input input-bordered join-item w-36 h-12 text-[#F56D04]"
-            placeholder="search"
-          />
-          <button className="btn join-item rounded-r-full"><FaSearch />
-          </button>
-        </div>
+      <Search/>
       </div>
         <NavLink to='/favorites'>Favourite</NavLink>
     </>

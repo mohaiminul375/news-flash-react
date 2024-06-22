@@ -12,7 +12,7 @@ const Category = () => {
     "science",
     "sports",
   ];
-  console.log("filter", category);
+//   console.log("filter", category);
   return (
     <div className="my-5 flex justify-center">
       <select

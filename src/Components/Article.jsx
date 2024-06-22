@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { addFavorite, removeFavorite } from "../redux/favoritesSlice";
 import toast, { Toaster } from 'react-hot-toast';
 const Article = ({ article, idx }) => {
-  console.log(article);
+  // console.log(article);
   const { title, urlToImage, description } = article;
   // favorite
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites);
   const isFavorite = favorites.find((fav) => fav.url === article.url);
-  console.log("isFavorite");
+  // console.log("isFavorite");
   //   favorite func
   const handleFavorite = () => {
     if (isFavorite) {
