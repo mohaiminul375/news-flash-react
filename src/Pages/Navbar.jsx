@@ -6,10 +6,11 @@ import Search from "../Components/Search";
 const Navbar = () => {
   const navbars = (
     <>
+      <NavLink className={({isActive})=>isActive?'text-[#F56D04] font-bold underline text-base':' text-base'} to="/">Home</NavLink>
+      <NavLink className={({isActive})=>isActive?'text-[#F56D04] font-bold underline text-base':' text-base'} to="/favorites">Favourite</NavLink>
       <div>
-      <Search/>
+        <Search />
       </div>
-        <NavLink to='/favorites'>Favourite</NavLink>
     </>
   );
   return (
@@ -21,9 +22,7 @@ const Navbar = () => {
         </h2>
       </div>
       <div className="navbar-end">
-        <div className="hidden md:flex gap-8 items-center">
-            {navbars}
-        </div>
+        <div className="hidden md:flex gap-8 items-center">{navbars}</div>
         <div className="dropdown dropdown-end md:hidden">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
             <GiHamburgerMenu className="text-2xl text-[#F56D04]" />
@@ -32,7 +31,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#112950] rounded-box w-52"
           >
-           {navbars}
+            {navbars}
           </ul>
         </div>
       </div>
